@@ -5,20 +5,20 @@ class ChatMessage extends StatelessWidget {
   final String uid;
   final AnimationController animationController;
 
-  const ChatMessage({
-    Key key,
-    @required this.texto,
-    @required this.uid,
-    @required this.animationController,
-  }) : super(key: key);
+  const ChatMessage(
+      {Key key,
+      @required this.texto,
+      @required this.uid,
+      @required this.animationController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FadeTransition(
-      opacity: animationController,
+      opacity: this.animationController,
       child: SizeTransition(
         sizeFactor: CurvedAnimation(
-            parent: animationController, curve: Curves.elasticOut),
+            parent: this.animationController, curve: Curves.easeOut),
         child: Container(
           child: this.uid == '123' ? _myMessage() : _notMyMessage(),
         ),
@@ -30,8 +30,8 @@ class ChatMessage extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        margin: EdgeInsets.only(bottom: 5, left: 50, right: 5),
         padding: EdgeInsets.all(8.0),
+        margin: EdgeInsets.only(right: 5, bottom: 5, left: 50),
         child: Text(
           this.texto,
           style: TextStyle(color: Colors.white),
@@ -46,8 +46,8 @@ class ChatMessage extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        margin: EdgeInsets.only(bottom: 5, left: 5, right: 50),
         padding: EdgeInsets.all(8.0),
+        margin: EdgeInsets.only(left: 5, bottom: 5, right: 50),
         child: Text(
           this.texto,
           style: TextStyle(color: Colors.black87),
